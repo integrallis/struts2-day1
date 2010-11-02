@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"       
+          "http://struts.apache.org/dtds/struts-2.0.dtd">
+<!-- 
+  - This file is included by the struts.xml file as an example
+  - of how to break up the configuration file into multiple files.
+-->
+<struts>
+  <package name="todo" namespace="/todo" extends="struts-default">	
+ 	  <global-results>
+  		  <result name="error">/todo/error.jsp</result>
+  	</global-results>
+<!--
+    <global-exception-mappings>
+       <exception-mapping exception="java.lang.Exception" result="error"/>
+    </global-exception-mappings>
+-->		
+    <action name="add">
+      <result>/todo/input.jsp</result>
+    </action>
+
+    <action name="save" class="com.integrallis.actions.TodoAction">
+      <result name="input">/todo/input.jsp</result>
+      <result>/todo/finish.jsp</result>
+    </action>
+
+  </package>
+</struts>
