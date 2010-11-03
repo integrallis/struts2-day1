@@ -15,12 +15,12 @@
   <s:property value="%{exception.message}"/>
   <s:property value="%{exceptionStack}"/>  
 </p>
-<s:form action="save">
-    <s:textfield key="title" label="Title"/>
-    <s:textfield key="firstName" label="First Name"/>
-    <s:textfield key="lastName" label="Last Name"/>
+<s:form action="save" theme="xhtml">
+    <s:textfield key="title" label="%{getText('title.text')}"/>
+    <s:textfield key="author.firstName" label="%{getText('firstName.text')}"/>
+    <s:textfield key="author.lastName" label="Last Name"/>
     <s:textfield key="price" label="Price"/>
-	  <sx:datetimepicker key="completeByDate" label="Order Date" />	
+	  <sx:datetimepicker key="publishedOn" label="Published Date" />	
     <s:submit/>
 </s:form>
 </body>

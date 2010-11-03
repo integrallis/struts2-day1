@@ -31,4 +31,8 @@ public class Author implements Serializable {
   public void setBirthDate(Date d) {
     birthDate = d;
   }
+  
+  public String toString() {
+    return lastName + ", " + firstName;
+  }
 }

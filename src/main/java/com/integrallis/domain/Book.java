@@ -9,7 +9,7 @@ public class Book implements Serializable {
 	private Date publishedOn;
 	private Double price;
 	private int version = -1;
-	private Author author;
+	private Author author;// = new Author();
 	
 
 	public String getIsbn() {
