@@ -8,6 +8,8 @@ import com.integrallis.domain.Author;
 import com.opensymphony.xwork2.ModelDriven;
 import com.integrallis.RequestURIAware;
 import com.integrallis.annotation.Timer;
+import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.Action;
 
 @Timer
 public class BookAddAction extends ActionSupport implements ModelDriven<Book>, RequestURIAware {
@@ -15,7 +17,10 @@ public class BookAddAction extends ActionSupport implements ModelDriven<Book>, R
   private BookService service = new BookService();
   private Book book = new Book();
   private String requestUri;
-  
+
+  @Action(
+    results={@Result(name="success", location="book-list", type="redirect")}
+  )
   public String execute() {
     System.out.println("-BookAddAction-");
     System.out.println(requestUri);    
