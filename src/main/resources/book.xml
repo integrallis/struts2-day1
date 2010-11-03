@@ -8,6 +8,17 @@
 -->
 <struts>
   <package name="book" namespace="/book" extends="struts-default">	
+    <!-- Define some interceptors -->
+    <interceptors>	
+   	  <interceptor name="customTimingInterceptor" 
+   	    class="com.integrallis.interceptors.CustomTimerInterceptor"></interceptor>
+
+      <interceptor-stack name="customStack">
+        <interceptor-ref name="customTimingInterceptor"/>
+   		  <interceptor-ref name="defaultStack" />
+      </interceptor-stack>
+    </interceptors>
+        
  	  <global-results>
   		  <result name="error">/book/error.jsp</result>
   	</global-results>
@@ -17,6 +28,8 @@
     </global-exception-mappings>
 		
     <action name="add">
+      <interceptor-ref name="customTimingInterceptor"/>
+ 		  <interceptor-ref name="basicStack" />      
       <result>/book/input.jsp</result>
     </action>
 
@@ -24,16 +37,10 @@
   http://struts.apache.org/2.2.1/docs/exception-configuration.html
 -->
     <action name="save" class="com.integrallis.actions.BookAddAction">      
+      <interceptor-ref name="customStack"/>      
       <exception-mapping exception="com.integrallis.exceptions.NotFoundException" result="input"/>      
       <result name="input">/book/input.jsp</result>
-      <result name="success" type="redirect">/book/list.action</result>
-      <!--
-      <interceptor-ref name="exception"/>   
-      <interceptor-ref name="basicStack"/>      
-      <exception-mapping 
-        exception="com.integrallis.exceptions.NotFoundException" 
-        result="input"/>       
-              -->      
+      <result name="success" type="redirect">/book/list.action</result>      
     </action>
 
     <action name="list" class="com.integrallis.actions.BookListAction">

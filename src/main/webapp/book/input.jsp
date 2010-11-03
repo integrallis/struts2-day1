@@ -16,6 +16,7 @@
   <s:property value="%{exceptionStack}"/>  
 </p>
 <s:form action="save" theme="xhtml">
+<s:text name="title.text"/>
     <s:textfield key="title" label="%{getText('title.text')}"/>
     <s:textfield key="author.firstName" label="%{getText('firstName.text')}"/>
     <s:textfield key="author.lastName" label="Last Name"/>
