@@ -2,7 +2,8 @@ package com.integrallis.interceptors;
 
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
- 
+import com.integrallis.annotation.Timer;
+
 public class CustomTimerInterceptor implements Interceptor {
 
   	public void destroy() {
@@ -17,10 +18,11 @@ public class CustomTimerInterceptor implements Interceptor {
   	//put interceptor code here
   	public String intercept(ActionInvocation invocation) throws Exception {
       long start = System.currentTimeMillis();
-
   		String result = invocation.invoke();
-
-  		System.out.println("Executed in : " + (System.currentTimeMillis() - start) + " ms");
+  		
+      if (invocation.getAction().getClass().isAnnotationPresent(Timer.class)) {
+  		  System.out.println("Executed in : " + (System.currentTimeMillis() - start) + " ms");
+		  }
 
   		return result;
   	}  

@@ -6,14 +6,19 @@ import java.util.Date;
 import com.integrallis.domain.Book;
 import com.integrallis.domain.Author;
 import com.opensymphony.xwork2.ModelDriven;
+import com.integrallis.RequestURIAware;
+import com.integrallis.annotation.Timer;
 
-public class BookAddAction extends ActionSupport implements ModelDriven<Book>{
+@Timer
+public class BookAddAction extends ActionSupport implements ModelDriven<Book>, RequestURIAware {
   
   private BookService service = new BookService();
   private Book book = new Book();
-
+  private String requestUri;
+  
   public String execute() {
     System.out.println("-BookAddAction-");
+    System.out.println(requestUri);    
     System.out.println(book);
 
     service.addBook(book);
@@ -26,6 +31,10 @@ public class BookAddAction extends ActionSupport implements ModelDriven<Book>{
   }
         
   public void validate() {
-    addFieldError("title", "yo this is an error");
+//    addFieldError("title", "yo this is an error");
+  }
+  
+  public void setRequestURI(String s) {
+    requestUri = s;
   }
 }
